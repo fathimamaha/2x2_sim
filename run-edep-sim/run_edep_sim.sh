@@ -44,10 +44,11 @@ pushd "$tmpDir"
 
 rm -f "$genieOutPrefix".*
 
+    # -e "$ARCUBE_EXPOSURE" \
 
 run gevgen_fnal \
+    -n 1\
     -f "$dk2nuFile","$ARCUBE_DET_LOCATION" \
-    -e 1E12 \
     -g "$ARCUBE_GEOM" \
     -m "$maxPathFile" \
     -L cm -D g_cm3 \

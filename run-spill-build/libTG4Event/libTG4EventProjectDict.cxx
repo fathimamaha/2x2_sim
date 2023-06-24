@@ -1151,14 +1151,14 @@ namespace {
 0
     };
     static const char* includePaths[] = {
-"/opt/generators/root/install/include",
+"/cvmfs/larsoft.opensciencegrid.org/products/root/v6_12_06a/Linux64bit+3.10-2.17-e17-prof/include",
 "/opt/generators/root/install/etc",
 "/opt/generators/root/install/etc/cling",
 "/opt/generators/root/install/include",
 "/opt/nvidia/hpc_sdk/Linux_x86_64/22.5/math_libs/11.7/include",
 "/opt/nvidia/hpc_sdk/Linux_x86_64/22.5/cuda/11.7/include",
-"/opt/generators/root/install/include",
-"/global/cfs/cdirs/dune/users/mkramer/mywork/2x2_sim/run-spill-build/libTG4Event/",
+"/cvmfs/larsoft.opensciencegrid.org/products/root/v6_12_06a/Linux64bit+3.10-2.17-e17-prof/include",
+"/lcrc/project/LCRC_for_DUNE/users/fathima/2x2_sim/run-spill-build/libTG4Event/",
 0
     };
     static const char* fwdDeclCode = R"DICTFWDDCLS(
@@ -1203,7 +1203,7 @@ nullptr};
     if (!isInitialized) {
       TROOT::RegisterModule("libTG4EventProjectDict",
         headers, includePaths, payloadCode, fwdDeclCode,
-        TriggerDictionaryInitialization_libTG4EventProjectDict_Impl, {}, classesHeaders, /*has no C++ module*/false);
+        TriggerDictionaryInitialization_libTG4EventProjectDict_Impl, {}, classesHeaders);
       isInitialized = true;
     }
   }
