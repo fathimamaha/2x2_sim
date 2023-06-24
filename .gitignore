@@ -11,3 +11,5 @@ slurm-*.out
 *.venv
 *.h5
 *.root
+/2x2EventGeneration
+core.*

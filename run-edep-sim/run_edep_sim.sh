@@ -1,19 +1,3 @@
-#!/usr/bin/env bash
-
-# Reload in Shifter if necessary
-if [[ "$SHIFTER_IMAGEREQUEST" != "$ARCUBE_CONTAINER" ]]; then
-    shifter --image=$ARCUBE_CONTAINER --module=none -- "$0" "$@"
-    exit
-fi
-
-source /environment             # provided by the container
-
-## HACK: This will not wait for other tasks on the node to complete
-# if [[ "$SLURM_LOCALID" == 0 ]]; then
-#     monitorFile=monitor-$SLURM_JOBID.$SLURM_NODEID.txt
-#     ./monitor.sh >logs/"$ARCUBE_OUT_NAME"/"$SLURM_JOBID"/"$monitorFile" &
-# fi
-
 # Start seeds at 1 instead of 0, just in case GENIE does something
 # weird when given zero (e.g. use the current time)
 # NOTE: We just use the fixed Edep default seed of
@@ -60,16 +44,18 @@ pushd "$tmpDir"
 
 rm -f "$genieOutPrefix".*
 
+
 run gevgen_fnal \
-    -e "$ARCUBE_EXPOSURE" \
     -f "$dk2nuFile","$ARCUBE_DET_LOCATION" \
+    -e 1E12 \
     -g "$ARCUBE_GEOM" \
     -m "$maxPathFile" \
     -L cm -D g_cm3 \
     --cross-sections "$ARCUBE_XSEC_FILE" \
     --tune "$ARCUBE_TUNE" \
     --seed "$seed" \
-    -o "$genieOutPrefix"
+    -o "$genieOutPrefix"\
+    --event-record-print-level 1
 
 mv genie-mcjob-0.status "$genieOutPrefix".status
 popd
@@ -77,13 +63,15 @@ rmdir "$tmpDir"
 
 run gntpc -i "$genieOutPrefix".0.ghep.root -f rootracker \
     -o "$genieOutPrefix".0.gtrac.root
-# rm "$genieOutPrefix".0.ghep.root
+# # rm "$genieOutPrefix".0.ghep.root
+echo "gntpc done" 
 
 if [[ "$ARCUBE_CHERRYPICK" == 1 ]]; then
     run ./cherrypicker.py -i "$genieOutPrefix".0.gtrac.root \
         -o "$genieOutPrefix".0.gtrac.cherry.root
     genieFile="$genieOutPrefix".0.gtrac.cherry.root
 else
+    echo "ENTERED"
     genieFile="$genieOutPrefix".0.gtrac.root
 fi
 
@@ -103,3 +91,5 @@ export ARCUBE_GEOM_EDEP=${ARCUBE_GEOM_EDEP:-$ARCUBE_GEOM}
 
 run edep-sim -C -g "$ARCUBE_GEOM_EDEP" -o "$edepRootFile" -e "$nEvents" \
     <(echo "$edepCode") "$ARCUBE_EDEP_MAC"
+
+# exit
