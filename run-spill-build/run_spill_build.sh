@@ -50,10 +50,12 @@ export ARCUBE_XSEC_FILE='/lcrc/project/LCRC_for_DUNE/products/splines/D22_22a_02
 
 # export ARCUBE_CONTAINER='mjkramer/sim2x2:genie_edep.LFG_testing.20230228.v2'
 export ARCUBE_HADD_FACTOR='10'
-export ARCUBE_IN_NAME='test_MiniRun3.nu'
-export ARCUBE_OUT_NAME='test_MiniRun3.nu.hadd'
+export ARCUBE_NU_NAME='test_MiniRun3.nu.hadd'
+export ARCUBE_NU_POT='1E16'
+export ARCUBE_ROCK_NAME='test_MiniRun3.rock.hadd'
+export ARCUBE_ROCK_POT='1E16'
+export ARCUBE_OUT_NAME='test_MiniRun3.spill'
 export ARCUBE_INDEX='0'
-
 
 
 # root -l -b -q 'overlaySinglesIntoSpills.C("/global/cfs/cdirs/dune/users/mkramer/mywork/2x2_sim/run-edep-sim/output/MiniRun1_1E19_RHC_nu/EDEPSIM/g4numiv6_minervame_me000z-200i_0_0001.000.EDEPSIM.root","/global/cfs/cdirs/dune/users/mkramer/mywork/2x2_sim/run-edep-sim/output/MiniRun1_1E19_RHC_rock/EDEPSIM/g4numiv6_minervame_me000z-200i_0_0001.000.EDEPSIM.root","test_multiSpill.root",2E15,5E14)'
