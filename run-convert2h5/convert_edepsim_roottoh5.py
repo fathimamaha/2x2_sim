@@ -6,12 +6,14 @@ Converts ROOT file created by edep-sim into HDF5 format
 from math import sqrt
 import os
 import numpy as np
-import fire
+# import fire
 import h5py
-from tqdm import tqdm
+# from tqdm import tqdm
 import glob
+import sys
 
-from ROOT import TG4Event, TFile, TMap
+from ROOT import TFile
+# from ROOT import TG4Event, TFile, TMap
 
 # Output array datatypes
 segments_dtype = np.dtype([("eventID","u4"),("vertexID", "u8"), ("segment_id", "u4"),
@@ -216,7 +218,8 @@ def updateHDF5File(output_file, trajectories, segments, vertices, genie_s, genie
                 f['genie_hdr'][ngenie_h:] = genie_h
 
 # Read a file and dump it.
-def dump(input_file, output_file):
+def dump(input_file="/lcrc/project/LCRC_for_DUNE/users/fathima/2x2_sim/run-convert2h5/../run-spill-build/output/test_MiniRun3.spill/EDEPSIM_SPILLS/test_MiniRun3.spill.00000.EDEPSIM_SPILLS.root", 
+output_file="/lcrc/project/LCRC_for_DUNE/users/fathima/2x2_sim/run-convert2h5/output/test_MiniRun3.convert2h5/EDEPSIM_H5/test_MiniRun3.convert2h5.00000.EDEPSIM.h5"):
 
     """
     Script to convert edep-sim root output to an h5 file formatted in a way
@@ -271,7 +274,8 @@ def dump(input_file, output_file):
     # For assigning unique-in-file track IDs:
     trackCounter = 0
 
-    for jentry in tqdm(range(entries)):
+    for jentry in range(entries):
+
         #print(jentry,"/",entries)
         nb = inputTree.GetEntry(jentry)
         gb = genieTree.GetEntry(jentry)
@@ -279,7 +283,9 @@ def dump(input_file, output_file):
         # IF CRASH: Comment this line (also see IF CRASH above)
         event = inputTree.Event
 
-        spill_it_tobj = event_spill_map.GetValue(f"{event.RunId} {event.EventId}")
+        print(event)
+
+        spill_it_tobj = event_spill_map.GetValue(str(event.RunId)+" "+str(event.EventId))
         spill_it = int(spill_it_tobj.GetName())
         if spill_it != lastSpill: # New spill?
             spillCounter += 1
@@ -513,4 +519,4 @@ def dump(input_file, output_file):
         np.concatenate(genie_hdr_list, axis=0) if genie_hdr_list else np.empty((0,)))
 
 if __name__ == "__main__":
-    fire.Fire(dump)
+    dump()
