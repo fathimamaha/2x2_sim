@@ -1,12 +1,15 @@
 #!/usr/bin/env bash
 
-module load cudatoolkit         # 11.7
-module load python              # 3.9-anaconda-2021.11
+# module load cudatoolkit         # 11.7
+# module load python              # 3.9-anaconda-2021.11
+module load gcc/8.5.0-ede2bck
+module load python
+module load cuda
 
-rm -rf larnd-sim larnd.venv
+# rm -rf larnd-sim larnd.venv
 
-python -m venv larnd.venv/
-source larnd.venv/bin/activate
+# python -m venv larnd.venv/
+# source larnd.venv/bin/activate
 
 # Might need to remove larnd-sim from this requirements file. DONE.
 pip install -r requirements.txt

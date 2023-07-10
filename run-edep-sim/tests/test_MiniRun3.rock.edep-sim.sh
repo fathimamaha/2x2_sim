@@ -3,16 +3,14 @@
 
 #SBATCH --mail-user=ffathimamaha@anl.gov
 #SBATCH --mail-type=ALL
-#SBATCH --job-name=edepsimrock 
-#SBATCH --output=%j.%N.stdout
-#SBATCH --error=%j.%N.stderr
-#SBATCH --chdir=/lcrc/project/LCRC_for_DUNE/users/fathima/2x2_sim/run-edep-sim
-#SBATCH --account=LCRC_for_DUNE 
-#SBATCH --nodes=1
-#SBATCH --ntasks=1
-#SBATCH --time=120:00
+#SBATCH --job-name=edepsim 
+#SBATCH --error=./%j.%N.stderr
+#SBATCH --chdir=/lcrc/project/LCRC_for_DUNE/users/fathima/2x2_sim/run-edep-sim/
+#SBATCH --account=LCRC_for_DUNE
+#SBATCH --exclusive
+#SBATCH --time=500:00
 
-# cd /lcrc/project/LCRC_for_DUNE/users/fathima/2x2_sim/run-edep-sim
+cd /lcrc/project/LCRC_for_DUNE/users/fathima/2x2_sim/run-edep-sim
 
 #LCRC for DUNE specific dependancies
 source /cvmfs/dune.opensciencegrid.org/products/dune/setup_dune.sh
@@ -63,8 +61,9 @@ export ARCUBE_OUT_NAME='test_MiniRun3.rock'
 
 # ./run_edep_sim.sh
 
-for i in $(seq 0 9); do
+for i in $(seq 0 500); do
     ARCUBE_INDEX=$i ./run_edep_sim.sh &
+    wait
 done
 
 # wait
