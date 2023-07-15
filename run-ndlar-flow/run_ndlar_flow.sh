@@ -1,12 +1,16 @@
 #!/usr/bin/env bash
 
-module load python
+module load anaconda3/2023.03
+export ARCUBE_IN_NAME='test_MiniRun3.larnd'
+export ARCUBE_OUT_NAME='test_MiniRun3.flow'
+export ARCUBE_INDEX='0'
+# export PATH=/home/ffathimamaha/.local/bebop/anaconda3/2023.03/bin:$PATH
 
 source flow.venv/bin/activate
 
-if [[ "$NERSC_HOST" == "cori" ]]; then
-    export HDF5_USE_FILE_LOCKING=FALSE
-fi
+# if [[ "$NERSC_HOST" == "cori" ]]; then
+#     export HDF5_USE_FILE_LOCKING=FALSE
+# fi
 
 # TODO actually use this seed
 seed=$((1 + ARCUBE_INDEX))
@@ -47,6 +51,8 @@ workflow4='yamls/proto_nd_flow/workflows/charge/prompt_calibration.yaml'
 workflow5='yamls/proto_nd_flow/workflows/charge/final_calibration.yaml'
 
 cd ndlar_flow
+
+# cd h5flow
 
 h5flow -c $workflow1 $workflow2 $workflow3 $workflow4 $workflow5\
     -i $inFile -o $outFile
