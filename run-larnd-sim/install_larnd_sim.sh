@@ -2,10 +2,10 @@
 
 # module load cudatoolkit         # 11.7
 # module load python              # 3.9-anaconda-2021.11
-module load gcc/8.5.0-ede2bck
-module load python
-module load cuda
-
+# module load gcc/8.5.0-ede2bck
+# module load python
+# module load cuda
+module load anaconda3/2023-01-11
 # rm -rf larnd-sim larnd.venv
 
 # python -m venv larnd.venv/
@@ -19,8 +19,8 @@ pip install -r requirements.txt
 # the venv. Ideally, install everything *except* larnd-sim using the
 # requirements.txt, then just use the block at the bottom to install larnd-sim.
 
-# pip install -U pip wheel setuptools
-# pip install cupy-cuda11x
+pip install -U pip wheel setuptools
+pip install cupy-cuda11x
 
 # https://docs.nersc.gov/development/languages/python/using-python-perlmutter/#installing-with-pip
 ( git clone https://github.com/DUNE/larnd-sim.git

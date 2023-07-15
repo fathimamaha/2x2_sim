@@ -31,6 +31,7 @@ export GXMLPATH=$PWD/flux            # contains GNuMIFlux.xml
 maxPathFile=$PWD/maxpath/$(basename "$ARCUBE_GEOM" .gdml).$ARCUBE_TUNE.maxpath.xml
 genieOutPrefix=$outDir/GENIE/$outName
 mkdir -p "$(dirname "$genieOutPrefix")"
+export GXMLPATH=/lcrc/project/LCRC_for_DUNE/users/fathima/2x2_sim/run-edep-sim:${GXMLPATH}
 
 # HACK: gevgen_fnal hardcodes the name of the status file (unlike gevgen, which
 # respects -o), so run it in a temporary directory. Need to get absolute paths.
@@ -44,10 +45,9 @@ pushd "$tmpDir"
 
 rm -f "$genieOutPrefix".*
 
-    # -e "$ARCUBE_EXPOSURE" \
 
 run gevgen_fnal \
-    -n 1\
+    -e "$ARCUBE_EXPOSURE" \
     -f "$dk2nuFile","$ARCUBE_DET_LOCATION" \
     -g "$ARCUBE_GEOM" \
     -m "$maxPathFile" \
@@ -66,6 +66,17 @@ run gntpc -i "$genieOutPrefix".0.ghep.root -f rootracker \
     -o "$genieOutPrefix".0.gtrac.root
 # # rm "$genieOutPrefix".0.ghep.root
 echo "gntpc done" 
+ source /cvmfs/dune.opensciencegrid.org/products/dune/setup_dune.sh
+
+# #  setup gcc v7_3_0
+ setup geant4 v4_10_3_p03e -q e17:prof
+
+ setup root v6_12_06a -q e17:prof
+# #  setup pythia v6_4_28p -q gcc730:prof
+# #  setup lhapdf v6_2_3 -q e17:profS
+# #  setup libxml2 v2_9_9 -q prof
+# #  setup log4cpp v1_1_3b -q e17:prof
+#  setup geant4 v4_10_3_p03e -q e17:prof
 
 if [[ "$ARCUBE_CHERRYPICK" == 1 ]]; then
     run ./cherrypicker.py -i "$genieOutPrefix".0.gtrac.root \

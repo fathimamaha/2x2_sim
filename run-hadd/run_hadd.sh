@@ -25,12 +25,12 @@ export LIBXML2_INC=/cvmfs/larsoft.opensciencegrid.org/products/libxml2/v2_9_9/Li
 export LIBXML2_LIB=/cvmfs/larsoft.opensciencegrid.org/products/libxml2/v2_9_9/Linux64bit+3.10-2.17-prof/lib/
 
 #GENIE dkqu and edep-sim additionally installed
-export GENIE=$GEN_DIR/Generator
-export DK2NU=$GEN_DIR/dk2nu
+# export GENIE=$GEN_DIR/Generator
+# export DK2NU=$GEN_DIR/dk2nu
 export EDEPSIM=$GEN_DIR/edep-sim/install
 
-export LD_LIBRARY_PATH=$GENIE/lib:$LD_LIBRARY_PATH
-export LD_LIBRARY_PATH=$LIBXML2_LIB:$LHAPDF_LIB:$PYTHIA6:$GENIE/lib:$EDEPSIM/lib:$DK2NU/lib:$LD_LIBRARY_PATH
+# export LD_LIBRARY_PATH=$GENIE/lib:$GENIE/lib:$DK2NU/lib:$LD_LIBRARY_PATH
+export LD_LIBRARY_PATH=$LIBXML2_LIB:$LHAPDF_LIB:$PYTHIA6:$EDEPSIM/lib:$LD_LIBRARY_PATH
 export PATH=$EDEPSIM/bin:$GENIE/bin:$PATH
 
 export EDEPSIM_ROOT=$(dirname $(which edep-sim))/..
@@ -49,7 +49,7 @@ export ARCUBE_XSEC_FILE='/lcrc/project/LCRC_for_DUNE/products/splines/D22_22a_02
 # export ARCUBE_OUT_NAME='test_MiniRun3.nu'
 
 # export ARCUBE_CONTAINER='mjkramer/sim2x2:genie_edep.LFG_testing.20230228.v2'
-export ARCUBE_HADD_FACTOR='501'
+export ARCUBE_HADD_FACTOR='10'
 export ARCUBE_IN_NAME='test_MiniRun3.rock'
 export ARCUBE_OUT_NAME='test_MiniRun3.rock.hadd'
 export ARCUBE_INDEX='0'
