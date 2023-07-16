@@ -1,0 +1,12 @@
+*.egg-info
+build
+dist
+*.ipynb_checkpoints*
+__pycache__
+*.mypy_cache
+*.virtual_documents
+docs/build
+*.pdf
+.vscode
+examples/module0_corsika.h5
+test

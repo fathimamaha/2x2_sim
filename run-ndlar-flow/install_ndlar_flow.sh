@@ -1,7 +1,5 @@
 #!/usr/bin/env bash
 
-# set -o errexit
-
 module load anaconda3/2023.03
 
 python -m venv flow.venv
@@ -28,6 +26,4 @@ datadir=ndlar_flow/data/proto_nd_flow
 cp static/multi_tile_layout-2.3.16.yaml $datadir
 cp static/runlist-2x2-mcexample.txt $datadir
 cp static/light_module_desc-0.0.0.yaml $datadir
-
-#COPIED THIS MANUALLY
-cp ../run-larnd-sim/tmp/larndsim/detector_properties/2x2.yaml $datadir
+cp ../run-larnd-sim/larnd-sim/larndsim/detector_properties/2x2.yaml $datadir
