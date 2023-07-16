@@ -45,7 +45,6 @@ pushd "$tmpDir"
 
 rm -f "$genieOutPrefix".*
 
-
 run gevgen_fnal \
     -e "$ARCUBE_EXPOSURE" \
     -f "$dk2nuFile","$ARCUBE_DET_LOCATION" \
@@ -64,19 +63,18 @@ rmdir "$tmpDir"
 
 run gntpc -i "$genieOutPrefix".0.ghep.root -f rootracker \
     -o "$genieOutPrefix".0.gtrac.root
-# # rm "$genieOutPrefix".0.ghep.root
+
 echo "gntpc done" 
  source /cvmfs/dune.opensciencegrid.org/products/dune/setup_dune.sh
 
-# #  setup gcc v7_3_0
- setup geant4 v4_10_3_p03e -q e17:prof
 
- setup root v6_12_06a -q e17:prof
-# #  setup pythia v6_4_28p -q gcc730:prof
-# #  setup lhapdf v6_2_3 -q e17:profS
-# #  setup libxml2 v2_9_9 -q prof
-# #  setup log4cpp v1_1_3b -q e17:prof
-#  setup geant4 v4_10_3_p03e -q e17:prof
+#----------#
+
+#Setting up geant and root separately
+#for what has been built with edepsim
+setup geant4 v4_10_3_p03e -q e17:prof
+setup root v6_12_06a -q e17:prof
+
 
 if [[ "$ARCUBE_CHERRYPICK" == 1 ]]; then
     run ./cherrypicker.py -i "$genieOutPrefix".0.gtrac.root \
@@ -103,5 +101,3 @@ export ARCUBE_GEOM_EDEP=${ARCUBE_GEOM_EDEP:-$ARCUBE_GEOM}
 
 run edep-sim -C -g "$ARCUBE_GEOM_EDEP" -o "$edepRootFile" -e "$nEvents" \
     <(echo "$edepCode") "$ARCUBE_EDEP_MAC"
-
-# exit
