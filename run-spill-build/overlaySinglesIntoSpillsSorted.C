@@ -105,11 +105,24 @@ void overlaySinglesIntoSpillsSorted(std::string inFileName1,
 
   for (int spillN = 0; ; ++spillN) {
     int Nevts_this_spill_1 = gRandom->Poisson(evts_per_spill_1);
-    int Nevts_this_spill_2 = gRandom->Poisson(evts_per_spill_2);
+    // // REVERT THIS COMMENTED FOR NORMAL USAGE
+    // int Nevts_this_spill_2 = gRandom->Poisson(evts_per_spill_2);
 
-    if (evt_it_1 + Nevts_this_spill_1 > N_evts_1 ||
-        evt_it_2 + Nevts_this_spill_2 > N_evts_2)
+    //if very less rock, include one in each till exhausted
+    int Nevts_this_spill_2 = 1;
+    if (evt_it_2 + Nevts_this_spill_2 > N_evts_2)
+      Nevts_this_spill_2 = 0;
+
+    std::cout << "spillN " << spillN << " Nevts_this_spill_1 "<< Nevts_this_spill_1 << " Nevts_this_spill_2 "<<Nevts_this_spill_2<<" evt_it_1 " << evt_it_1 << " evt_it_2 "<<evt_it_2 << " N_evts_1 "<<N_evts_1 <<" N_evts_2 "<< N_evts_2 << std::endl;
+
+    //if including very less rock
+    if (evt_it_1 + Nevts_this_spill_1 > N_evts_1)
       break;
+
+    // // REVERT THESE COMMENTED FOR NORMAL USAGE
+    // if (evt_it_1 + Nevts_this_spill_1 > N_evts_1 ||
+    //     evt_it_2 + Nevts_this_spill_2 > N_evts_2)
+    //   break;
 
     std::cout << "working on spill # " << spillN << std::endl;
 

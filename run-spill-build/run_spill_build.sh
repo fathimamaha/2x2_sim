@@ -1,20 +1,5 @@
 #!/usr/bin/env bash
 
-
-#LCRC for DUNE specific dependancies
-source /cvmfs/dune.opensciencegrid.org/products/dune/setup_dune.sh
-setup root v6_12_06a -q e17:prof
-
-
-export ARCUBE_HADD_FACTOR='10'
-export ARCUBE_NU_NAME='test_MiniRun3.nu.hadd'
-export ARCUBE_NU_POT='1E15'
-export ARCUBE_ROCK_NAME='test_MiniRun3.rock.hadd'
-export ARCUBE_ROCK_POT='1E15'
-export ARCUBE_OUT_NAME='test_MiniRun3.spill'
-export ARCUBE_INDEX='0'
-
-
 globalIdx=$ARCUBE_INDEX
 echo "globalIdx is $globalIdx"
 

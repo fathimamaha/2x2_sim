@@ -1,26 +1,5 @@
 #!/bin/bash
 
-#LCRC for DUNE specific dependancies
-source /cvmfs/dune.opensciencegrid.org/products/dune/setup_dune.sh
-#root comes with python2
-setup root v6_12_06a -q e17:prof
-
-#installs numpy and h5py for the user
-python -m pip install h5py fire --user
-
-#SETUP EDEPSIM for root
-export GEN_DIR=/lcrc/project/LCRC_for_DUNE/users/fathima
-export EDEPSIM=$GEN_DIR/edep-sim/install
-export PATH=$EDEPSIM/bin:$PATH
-export EDEPSIM_ROOT=$(dirname $(which edep-sim))/..
-export LD_LIBRARY_PATH=$EDEPSIM/lib:$LD_LIBRARY_PATH
-
-#CONVERT TO H5 VARIABLES
-export ARCUBE_SPILL_NAME='test_MiniRun3.spill'
-export ARCUBE_OUT_NAME='test_MiniRun3.convert2h5'
-export ARCUBE_INDEX='0'
-
-
 globalIdx=$ARCUBE_INDEX
 echo "globalIdx is $globalIdx"
 
@@ -41,6 +20,7 @@ run() {
 }
 
 inFile=$PWD/../run-spill-build/output/${ARCUBE_SPILL_NAME}/EDEPSIM_SPILLS/${inName}.EDEPSIM_SPILLS.root
+
 
 h5OutDir=$outDir/EDEPSIM_H5
 mkdir -p $h5OutDir

@@ -52,7 +52,5 @@ run_in() {
 run_in EDEPSIM_DUMPTREE "$codeDir"/edepsim_validation.py --sim_file "$edepFile" --input_type edep
 run_in LARNDSIM_EDEPTRUTH "$codeDir"/edepsim_validation.py --sim_file "$larndFile" --input_type larnd
 run_in LARNDSIM "$codeDir"/larndsim_validation.py --sim_file "$larndFile"
-
-#TODOOOO
 run_in FLOW "$codeDir"/flow_validation.py --flow_file "$flowFile"
 run_in FLOW_CPM "$codeDir"/CPM_validation.py --flow_file "$flowFile"

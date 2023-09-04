@@ -4,8 +4,8 @@
 
 echo "Arcube Index is $ARCUBE_INDEX"
 
-if ((  $SEEDCORRECTION == 1 )); then
-    seed=$((999 + ARCUBE_INDEX))
+if [ $SEEDCORRECTION = 1 ]; then
+    seed=$((1000 + ARCUBE_INDEX))
 else
     seed=$((1 + ARCUBE_INDEX))
 fi
@@ -73,39 +73,3 @@ run gntpc -i "$genieOutPrefix".0.ghep.root -f rootracker \
     -o "$genieOutPrefix".0.gtrac.root
 
 echo "gntpc done" 
- source /cvmfs/dune.opensciencegrid.org/products/dune/setup_dune.sh
-
-
-#----------#
-
-#Setting up geant and root separately
-#for what has been built with edepsim
-setup geant4 v4_10_3_p03e -q e17:prof
-setup root v6_12_06a -q e17:prof
-
-
-if [[ "$ARCUBE_CHERRYPICK" == 1 ]]; then
-    run ./cherrypicker.py -i "$genieOutPrefix".0.gtrac.root \
-        -o "$genieOutPrefix".0.gtrac.cherry.root
-    genieFile="$genieOutPrefix".0.gtrac.cherry.root
-else
-    echo "ENTERED"
-    genieFile="$genieOutPrefix".0.gtrac.root
-fi
-
-rootCode='
-auto t = (TTree*) _file0->Get("gRooTracker");
-std::cout << t->GetEntries() << std::endl;'
-nEvents=$(echo "$rootCode" | root -l -b "$genieFile" | tail -1)
-
-edepRootFile=$outDir/EDEPSIM/${outName}.EDEPSIM.root
-mkdir -p "$(dirname "$edepRootFile")"
-rm -f "$edepRootFile"
-
-edepCode="/generator/kinematics/rooTracker/input $genieFile
-/edep/runId $ARCUBE_INDEX"
-
-export ARCUBE_GEOM_EDEP=${ARCUBE_GEOM_EDEP:-$ARCUBE_GEOM}
-
-run edep-sim -C -g "$ARCUBE_GEOM_EDEP" -o "$edepRootFile" -e "$nEvents" \
-    <(echo "$edepCode") "$ARCUBE_EDEP_MAC"

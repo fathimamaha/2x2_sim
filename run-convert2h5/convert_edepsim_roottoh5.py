@@ -248,6 +248,7 @@ def dump(input_file, output_file):
     # inputTree.SetBranchAddress("Event",event)
 
     # map that gives which spill each event lives in
+    print("hi",inputFile.Get("event_spill_map"))
     event_spill_map = inputFile.Get("event_spill_map")
 
     # for setting t_spill

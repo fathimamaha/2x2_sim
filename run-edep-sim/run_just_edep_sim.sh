@@ -4,8 +4,8 @@
 
 echo "Arcube Index is $ARCUBE_INDEX"
 
-if ((  $SEEDCORRECTION == 1 )); then
-    seed=$((999 + ARCUBE_INDEX))
+if [ $SEEDCORRECTION = 1 ]; then
+    seed=$((1000 + ARCUBE_INDEX))
 else
     seed=$((1 + ARCUBE_INDEX))
 fi
@@ -48,32 +48,7 @@ dk2nuFile=$(realpath "$dk2nuFile")
 ARCUBE_GEOM=$(realpath "$ARCUBE_GEOM")
 ARCUBE_XSEC_FILE=$(realpath "$ARCUBE_XSEC_FILE")
 
-tmpDir=$(mktemp -d)
-pushd "$tmpDir"
-
-rm -f "$genieOutPrefix".*
-
-run gevgen_fnal \
-    -e "$ARCUBE_EXPOSURE" \
-    -f "$dk2nuFile","$ARCUBE_DET_LOCATION" \
-    -g "$ARCUBE_GEOM" \
-    -m "$maxPathFile" \
-    -L cm -D g_cm3 \
-    --cross-sections "$ARCUBE_XSEC_FILE" \
-    --tune "$ARCUBE_TUNE" \
-    --seed "$seed" \
-    -o "$genieOutPrefix"\
-    --event-record-print-level 1
-
-mv genie-mcjob-0.status "$genieOutPrefix".status
-popd
-rmdir "$tmpDir"
-
-run gntpc -i "$genieOutPrefix".0.ghep.root -f rootracker \
-    -o "$genieOutPrefix".0.gtrac.root
-
-echo "gntpc done" 
- source /cvmfs/dune.opensciencegrid.org/products/dune/setup_dune.sh
+source /cvmfs/dune.opensciencegrid.org/products/dune/setup_dune.sh
 
 
 #----------#

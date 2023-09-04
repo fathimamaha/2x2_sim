@@ -2,11 +2,11 @@
 # module load gcc/8.5.0-ede2bck
 
 #ON SWING MACHINES
-module load anaconda3/2023-01-11
+# module load anaconda3/2023-01-11
 
-export ARCUBE_CONVERT2H5_NAME='test_MiniRun3.convert2h5'
-export ARCUBE_OUT_NAME='test_MiniRun3.larnd'
-export ARCUBE_INDEX='0'
+# export ARCUBE_CONVERT2H5_NAME='test_MiniRun3.convert2h5'
+# export ARCUBE_OUT_NAME='test_MiniRun3.larnd'
+# export ARCUBE_INDEX='3'
 
 
 seed=$((1 + ARCUBE_INDEX))

@@ -1,11 +1,13 @@
 #!/usr/bin/env bash
 
-module load anaconda3/2023.03
-export ARCUBE_IN_NAME='test_MiniRun3.larnd'
-export ARCUBE_OUT_NAME='test_MiniRun3.flow'
-export ARCUBE_INDEX='0'
+# module load anaconda3/2023.03
 
-source flow.venv/bin/activate
+
+# export ARCUBE_IN_NAME='test_MiniRun3.larnd'
+# export ARCUBE_OUT_NAME='test_MiniRun3.flow'
+# #export ARCUBE_INDEX='0'
+
+# source flow.venv/bin/activate
 
 # TODO actually use this seed
 seed=$((1 + ARCUBE_INDEX))

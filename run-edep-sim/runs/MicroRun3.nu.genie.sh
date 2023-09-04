@@ -27,8 +27,8 @@ export ARCUBE_EDEP_MAC='macros/2x2_beam.mac'
 export ARCUBE_EXPOSURE='1E16'
 export ARCUBE_GEOM='geometry/Merged2x2MINERvA_v2/Merged2x2MINERvA_v2_noRock.gdml'
 export ARCUBE_GEOM_EDEP='geometry/Merged2x2MINERvA_v2/Merged2x2MINERvA_v2_withRock.gdml'
-export ARCUBE_TUNE='D22_22a_02_11b'
-export ARCUBE_XSEC_FILE='/lcrc/project/LCRC_for_DUNE/products/splines/D22_22a_02_11b.all.LFG_testing.20230228.spline.xml'
+export ARCUBE_TUNE='AR23_20i_00_000'
+export ARCUBE_XSEC_FILE='/lcrc/project/LCRC_for_DUNE/products/splines/genie_xsec/v3_04_00/NULL/AR2320i00000-k250-e1000/data/gxspl-NUsmall.xml'
 export ARCUBE_OUT_NAME='MicroRun3.nu'
 
 ./run_edep_sim.sh

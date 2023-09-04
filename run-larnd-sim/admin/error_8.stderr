@@ -1,0 +1,33 @@
+Traceback (most recent call last):
+  File "/gpfs/fs1/soft/swing/manual/anaconda3/2023-01-11/mconda3/lib/python3.10/site-packages/h5py/_hl/files.py", line 243, in make_fid
+    fid = h5f.open(name, h5f.ACC_RDWR, fapl=fapl)
+  File "h5py/_objects.pyx", line 54, in h5py._objects.with_phil.wrapper
+  File "h5py/_objects.pyx", line 55, in h5py._objects.with_phil.wrapper
+  File "h5py/h5f.pyx", line 106, in h5py.h5f.open
+FileNotFoundError: [Errno 2] Unable to open file (unable to open file: name = '/lcrc/project/LCRC_for_DUNE/users/fathima/2x2_sim/run-larnd-sim/larnd-sim/../output/test_MiniRun3.larnd/LARNDSIM/test_MiniRun3.larnd.00000.LARNDSIM.h5', errno = 2, error message = 'No such file or directory', flags = 1, o_flags = 2)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/lcrc/project/LCRC_for_DUNE/users/fathima/2x2_sim/run-larnd-sim/larnd-sim/./simulate_pixels.py", line 688, in <module>
+    fire.Fire(run_simulation)
+  File "/home/ffathimamaha/.local/swing/anaconda3/2023-01-11/lib/python3.10/site-packages/fire/core.py", line 141, in Fire
+    component_trace = _Fire(component, args, parsed_flag_args, context, name)
+  File "/home/ffathimamaha/.local/swing/anaconda3/2023-01-11/lib/python3.10/site-packages/fire/core.py", line 475, in _Fire
+    component, remaining_args = _CallAndUpdateTrace(
+  File "/home/ffathimamaha/.local/swing/anaconda3/2023-01-11/lib/python3.10/site-packages/fire/core.py", line 691, in _CallAndUpdateTrace
+    component = fn(*varargs, **kwargs)
+  File "/lcrc/project/LCRC_for_DUNE/users/fathima/2x2_sim/run-larnd-sim/larnd-sim/./simulate_pixels.py", line 325, in run_simulation
+    with h5py.File(output_filename, 'a') as output_file:
+  File "/gpfs/fs1/soft/swing/manual/anaconda3/2023-01-11/mconda3/lib/python3.10/site-packages/h5py/_hl/files.py", line 567, in __init__
+    fid = make_fid(name, mode, userblock_size, fapl, fcpl, swmr=swmr)
+  File "/gpfs/fs1/soft/swing/manual/anaconda3/2023-01-11/mconda3/lib/python3.10/site-packages/h5py/_hl/files.py", line 257, in make_fid
+    fid = h5f.create(name, h5f.ACC_EXCL, fapl=fapl, fcpl=fcpl)
+  File "h5py/_objects.pyx", line 54, in h5py._objects.with_phil.wrapper
+  File "h5py/_objects.pyx", line 55, in h5py._objects.with_phil.wrapper
+  File "h5py/h5f.pyx", line 126, in h5py.h5f.create
+FileExistsError: [Errno 17] Unable to create file (unable to open file: name = '/lcrc/project/LCRC_for_DUNE/users/fathima/2x2_sim/run-larnd-sim/larnd-sim/../output/test_MiniRun3.larnd/LARNDSIM/test_MiniRun3.larnd.00000.LARNDSIM.h5', errno = 17, error message = 'File exists', flags = 15, o_flags = c2)
+
+real	0m30.606s
+user	0m16.634s
+sys	0m5.347s

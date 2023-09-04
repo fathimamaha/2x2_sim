@@ -9,7 +9,7 @@ from collections import defaultdict
 
 from .units import mm, cm, V, kV
 
-BATCH_SIZE = 10000    # units = track segments
+BATCH_SIZE = 100000    # units = track segments
 EVENT_BATCH_SIZE = 1  # units = N tpcs
 WRITE_BATCH_SIZE = 1  # units = N batches
 EVENT_SEPARATOR = 'eventID'  # 'spillID' or 'vertexID'
