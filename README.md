@@ -1,5 +1,5 @@
 # 2x2_sim
-Wrappers for ArgonCube 2x2 simulation designed to be run at NERSC.
+Wrappers for ArgonCube 2x2 simulation forked from [DUNE/2x2_sim](https://github.com/DUNE/2x2_sim) designed to be run at Argonne National Laboratory.
 
 Support for other computing clusters/environments using Singularity is in progress. For certain parts of the simulation chain (e.g. edep-sim) require large input files and need to be downloaded from NERSC or regenerated.
 
